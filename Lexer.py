@@ -85,6 +85,11 @@ def t_NUM(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+# Reset Char count for every new line
+def find_column(input_text, token):
+    last_newline = input_text.rfind('\n', 0, token.lexpos)
+    column = token.lexpos - last_newline - 1
+    return column
 
 # Ignore whitespace
 t_ignore = ' \t\r'
@@ -111,4 +116,5 @@ while True:
     tok = lexer.token()
     if not tok:
         break
-    print(tok)
+    column = find_column(data, tok)
+    print(f"LexToken({tok.type},'{tok.value}',{tok.lineno},{column})")
