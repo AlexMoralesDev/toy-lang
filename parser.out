@@ -1,0 +1,541 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> block_definition block_operations
+Rule 2     block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN
+Rule 3     block_operations -> block_operation
+Rule 4     block_operations -> block_operations block_operation
+Rule 5     block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN
+Rule 6     block_operation -> PRINT ID
+Rule 7     block_operation -> RUN ID
+Rule 8     block_operation -> MINE ID
+Rule 9     block_operation -> EXPORT ID
+Rule 10    block_operation -> VIEW ID
+Rule 11    type -> STR
+Rule 12    type -> INT
+Rule 13    type -> LONG
+Rule 14    type -> FLOAT
+Rule 15    type -> LIST
+Rule 16    type -> TUPLE
+Rule 17    type -> DICT
+Rule 18    attribute -> ID TYPEASSIGN type
+Rule 19    attributes -> attribute
+Rule 20    attributes -> attributes SEPARATOR attribute
+Rule 21    new_att -> ID TYPEASSIGN STRING
+Rule 22    new_att -> ID TYPEASSIGN NUMBER
+Rule 23    new_atts -> new_att
+Rule 24    new_atts -> new_atts SEPARATOR new_att
+
+Terminals, with rules where they appear
+
+ADD                  : 5
+ASSIGN               : 2 5
+BLOCK                : 2
+DICT                 : 17
+EXPORT               : 9
+FLOAT                : 14
+ID                   : 2 5 6 7 8 9 10 18 21 22
+INT                  : 12
+LIST                 : 15
+LONG                 : 13
+LPAREN               : 2 5
+MINE                 : 8
+NUMBER               : 22
+PRINT                : 6
+RPAREN               : 2 5
+RUN                  : 7
+SEPARATOR            : 20 24
+STR                  : 11
+STRING               : 21
+TUPLE                : 16
+TYPEASSIGN           : 18 21 22
+VIEW                 : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+attribute            : 19 20
+attributes           : 2 20
+block_definition     : 1
+block_operation      : 3 4
+block_operations     : 1 4
+new_att              : 23 24
+new_atts             : 5 24
+start                : 0
+type                 : 18
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . block_definition block_operations
+    (2) block_definition -> . BLOCK ID ASSIGN LPAREN attributes RPAREN
+
+    BLOCK           shift and go to state 3
+
+    start                          shift and go to state 1
+    block_definition               shift and go to state 2
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> block_definition . block_operations
+    (3) block_operations -> . block_operation
+    (4) block_operations -> . block_operations block_operation
+    (5) block_operation -> . ADD ID ASSIGN LPAREN new_atts RPAREN
+    (6) block_operation -> . PRINT ID
+    (7) block_operation -> . RUN ID
+    (8) block_operation -> . MINE ID
+    (9) block_operation -> . EXPORT ID
+    (10) block_operation -> . VIEW ID
+
+    ADD             shift and go to state 6
+    PRINT           shift and go to state 7
+    RUN             shift and go to state 8
+    MINE            shift and go to state 9
+    EXPORT          shift and go to state 10
+    VIEW            shift and go to state 11
+
+    block_operations               shift and go to state 4
+    block_operation                shift and go to state 5
+
+state 3
+
+    (2) block_definition -> BLOCK . ID ASSIGN LPAREN attributes RPAREN
+
+    ID              shift and go to state 12
+
+
+state 4
+
+    (1) start -> block_definition block_operations .
+    (4) block_operations -> block_operations . block_operation
+    (5) block_operation -> . ADD ID ASSIGN LPAREN new_atts RPAREN
+    (6) block_operation -> . PRINT ID
+    (7) block_operation -> . RUN ID
+    (8) block_operation -> . MINE ID
+    (9) block_operation -> . EXPORT ID
+    (10) block_operation -> . VIEW ID
+
+    $end            reduce using rule 1 (start -> block_definition block_operations .)
+    ADD             shift and go to state 6
+    PRINT           shift and go to state 7
+    RUN             shift and go to state 8
+    MINE            shift and go to state 9
+    EXPORT          shift and go to state 10
+    VIEW            shift and go to state 11
+
+    block_operation                shift and go to state 13
+
+state 5
+
+    (3) block_operations -> block_operation .
+
+    ADD             reduce using rule 3 (block_operations -> block_operation .)
+    PRINT           reduce using rule 3 (block_operations -> block_operation .)
+    RUN             reduce using rule 3 (block_operations -> block_operation .)
+    MINE            reduce using rule 3 (block_operations -> block_operation .)
+    EXPORT          reduce using rule 3 (block_operations -> block_operation .)
+    VIEW            reduce using rule 3 (block_operations -> block_operation .)
+    $end            reduce using rule 3 (block_operations -> block_operation .)
+
+
+state 6
+
+    (5) block_operation -> ADD . ID ASSIGN LPAREN new_atts RPAREN
+
+    ID              shift and go to state 14
+
+
+state 7
+
+    (6) block_operation -> PRINT . ID
+
+    ID              shift and go to state 15
+
+
+state 8
+
+    (7) block_operation -> RUN . ID
+
+    ID              shift and go to state 16
+
+
+state 9
+
+    (8) block_operation -> MINE . ID
+
+    ID              shift and go to state 17
+
+
+state 10
+
+    (9) block_operation -> EXPORT . ID
+
+    ID              shift and go to state 18
+
+
+state 11
+
+    (10) block_operation -> VIEW . ID
+
+    ID              shift and go to state 19
+
+
+state 12
+
+    (2) block_definition -> BLOCK ID . ASSIGN LPAREN attributes RPAREN
+
+    ASSIGN          shift and go to state 20
+
+
+state 13
+
+    (4) block_operations -> block_operations block_operation .
+
+    ADD             reduce using rule 4 (block_operations -> block_operations block_operation .)
+    PRINT           reduce using rule 4 (block_operations -> block_operations block_operation .)
+    RUN             reduce using rule 4 (block_operations -> block_operations block_operation .)
+    MINE            reduce using rule 4 (block_operations -> block_operations block_operation .)
+    EXPORT          reduce using rule 4 (block_operations -> block_operations block_operation .)
+    VIEW            reduce using rule 4 (block_operations -> block_operations block_operation .)
+    $end            reduce using rule 4 (block_operations -> block_operations block_operation .)
+
+
+state 14
+
+    (5) block_operation -> ADD ID . ASSIGN LPAREN new_atts RPAREN
+
+    ASSIGN          shift and go to state 21
+
+
+state 15
+
+    (6) block_operation -> PRINT ID .
+
+    ADD             reduce using rule 6 (block_operation -> PRINT ID .)
+    PRINT           reduce using rule 6 (block_operation -> PRINT ID .)
+    RUN             reduce using rule 6 (block_operation -> PRINT ID .)
+    MINE            reduce using rule 6 (block_operation -> PRINT ID .)
+    EXPORT          reduce using rule 6 (block_operation -> PRINT ID .)
+    VIEW            reduce using rule 6 (block_operation -> PRINT ID .)
+    $end            reduce using rule 6 (block_operation -> PRINT ID .)
+
+
+state 16
+
+    (7) block_operation -> RUN ID .
+
+    ADD             reduce using rule 7 (block_operation -> RUN ID .)
+    PRINT           reduce using rule 7 (block_operation -> RUN ID .)
+    RUN             reduce using rule 7 (block_operation -> RUN ID .)
+    MINE            reduce using rule 7 (block_operation -> RUN ID .)
+    EXPORT          reduce using rule 7 (block_operation -> RUN ID .)
+    VIEW            reduce using rule 7 (block_operation -> RUN ID .)
+    $end            reduce using rule 7 (block_operation -> RUN ID .)
+
+
+state 17
+
+    (8) block_operation -> MINE ID .
+
+    ADD             reduce using rule 8 (block_operation -> MINE ID .)
+    PRINT           reduce using rule 8 (block_operation -> MINE ID .)
+    RUN             reduce using rule 8 (block_operation -> MINE ID .)
+    MINE            reduce using rule 8 (block_operation -> MINE ID .)
+    EXPORT          reduce using rule 8 (block_operation -> MINE ID .)
+    VIEW            reduce using rule 8 (block_operation -> MINE ID .)
+    $end            reduce using rule 8 (block_operation -> MINE ID .)
+
+
+state 18
+
+    (9) block_operation -> EXPORT ID .
+
+    ADD             reduce using rule 9 (block_operation -> EXPORT ID .)
+    PRINT           reduce using rule 9 (block_operation -> EXPORT ID .)
+    RUN             reduce using rule 9 (block_operation -> EXPORT ID .)
+    MINE            reduce using rule 9 (block_operation -> EXPORT ID .)
+    EXPORT          reduce using rule 9 (block_operation -> EXPORT ID .)
+    VIEW            reduce using rule 9 (block_operation -> EXPORT ID .)
+    $end            reduce using rule 9 (block_operation -> EXPORT ID .)
+
+
+state 19
+
+    (10) block_operation -> VIEW ID .
+
+    ADD             reduce using rule 10 (block_operation -> VIEW ID .)
+    PRINT           reduce using rule 10 (block_operation -> VIEW ID .)
+    RUN             reduce using rule 10 (block_operation -> VIEW ID .)
+    MINE            reduce using rule 10 (block_operation -> VIEW ID .)
+    EXPORT          reduce using rule 10 (block_operation -> VIEW ID .)
+    VIEW            reduce using rule 10 (block_operation -> VIEW ID .)
+    $end            reduce using rule 10 (block_operation -> VIEW ID .)
+
+
+state 20
+
+    (2) block_definition -> BLOCK ID ASSIGN . LPAREN attributes RPAREN
+
+    LPAREN          shift and go to state 22
+
+
+state 21
+
+    (5) block_operation -> ADD ID ASSIGN . LPAREN new_atts RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 22
+
+    (2) block_definition -> BLOCK ID ASSIGN LPAREN . attributes RPAREN
+    (19) attributes -> . attribute
+    (20) attributes -> . attributes SEPARATOR attribute
+    (18) attribute -> . ID TYPEASSIGN type
+
+    ID              shift and go to state 24
+
+    attributes                     shift and go to state 25
+    attribute                      shift and go to state 26
+
+state 23
+
+    (5) block_operation -> ADD ID ASSIGN LPAREN . new_atts RPAREN
+    (23) new_atts -> . new_att
+    (24) new_atts -> . new_atts SEPARATOR new_att
+    (21) new_att -> . ID TYPEASSIGN STRING
+    (22) new_att -> . ID TYPEASSIGN NUMBER
+
+    ID              shift and go to state 27
+
+    new_atts                       shift and go to state 28
+    new_att                        shift and go to state 29
+
+state 24
+
+    (18) attribute -> ID . TYPEASSIGN type
+
+    TYPEASSIGN      shift and go to state 30
+
+
+state 25
+
+    (2) block_definition -> BLOCK ID ASSIGN LPAREN attributes . RPAREN
+    (20) attributes -> attributes . SEPARATOR attribute
+
+    RPAREN          shift and go to state 31
+    SEPARATOR       shift and go to state 32
+
+
+state 26
+
+    (19) attributes -> attribute .
+
+    RPAREN          reduce using rule 19 (attributes -> attribute .)
+    SEPARATOR       reduce using rule 19 (attributes -> attribute .)
+
+
+state 27
+
+    (21) new_att -> ID . TYPEASSIGN STRING
+    (22) new_att -> ID . TYPEASSIGN NUMBER
+
+    TYPEASSIGN      shift and go to state 33
+
+
+state 28
+
+    (5) block_operation -> ADD ID ASSIGN LPAREN new_atts . RPAREN
+    (24) new_atts -> new_atts . SEPARATOR new_att
+
+    RPAREN          shift and go to state 34
+    SEPARATOR       shift and go to state 35
+
+
+state 29
+
+    (23) new_atts -> new_att .
+
+    RPAREN          reduce using rule 23 (new_atts -> new_att .)
+    SEPARATOR       reduce using rule 23 (new_atts -> new_att .)
+
+
+state 30
+
+    (18) attribute -> ID TYPEASSIGN . type
+    (11) type -> . STR
+    (12) type -> . INT
+    (13) type -> . LONG
+    (14) type -> . FLOAT
+    (15) type -> . LIST
+    (16) type -> . TUPLE
+    (17) type -> . DICT
+
+    STR             shift and go to state 37
+    INT             shift and go to state 38
+    LONG            shift and go to state 39
+    FLOAT           shift and go to state 40
+    LIST            shift and go to state 41
+    TUPLE           shift and go to state 42
+    DICT            shift and go to state 43
+
+    type                           shift and go to state 36
+
+state 31
+
+    (2) block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .
+
+    ADD             reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+    PRINT           reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+    RUN             reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+    MINE            reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+    EXPORT          reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+    VIEW            reduce using rule 2 (block_definition -> BLOCK ID ASSIGN LPAREN attributes RPAREN .)
+
+
+state 32
+
+    (20) attributes -> attributes SEPARATOR . attribute
+    (18) attribute -> . ID TYPEASSIGN type
+
+    ID              shift and go to state 24
+
+    attribute                      shift and go to state 44
+
+state 33
+
+    (21) new_att -> ID TYPEASSIGN . STRING
+    (22) new_att -> ID TYPEASSIGN . NUMBER
+
+    STRING          shift and go to state 45
+    NUMBER          shift and go to state 46
+
+
+state 34
+
+    (5) block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .
+
+    ADD             reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    PRINT           reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    RUN             reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    MINE            reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    EXPORT          reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    VIEW            reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+    $end            reduce using rule 5 (block_operation -> ADD ID ASSIGN LPAREN new_atts RPAREN .)
+
+
+state 35
+
+    (24) new_atts -> new_atts SEPARATOR . new_att
+    (21) new_att -> . ID TYPEASSIGN STRING
+    (22) new_att -> . ID TYPEASSIGN NUMBER
+
+    ID              shift and go to state 27
+
+    new_att                        shift and go to state 47
+
+state 36
+
+    (18) attribute -> ID TYPEASSIGN type .
+
+    RPAREN          reduce using rule 18 (attribute -> ID TYPEASSIGN type .)
+    SEPARATOR       reduce using rule 18 (attribute -> ID TYPEASSIGN type .)
+
+
+state 37
+
+    (11) type -> STR .
+
+    RPAREN          reduce using rule 11 (type -> STR .)
+    SEPARATOR       reduce using rule 11 (type -> STR .)
+
+
+state 38
+
+    (12) type -> INT .
+
+    RPAREN          reduce using rule 12 (type -> INT .)
+    SEPARATOR       reduce using rule 12 (type -> INT .)
+
+
+state 39
+
+    (13) type -> LONG .
+
+    RPAREN          reduce using rule 13 (type -> LONG .)
+    SEPARATOR       reduce using rule 13 (type -> LONG .)
+
+
+state 40
+
+    (14) type -> FLOAT .
+
+    RPAREN          reduce using rule 14 (type -> FLOAT .)
+    SEPARATOR       reduce using rule 14 (type -> FLOAT .)
+
+
+state 41
+
+    (15) type -> LIST .
+
+    RPAREN          reduce using rule 15 (type -> LIST .)
+    SEPARATOR       reduce using rule 15 (type -> LIST .)
+
+
+state 42
+
+    (16) type -> TUPLE .
+
+    RPAREN          reduce using rule 16 (type -> TUPLE .)
+    SEPARATOR       reduce using rule 16 (type -> TUPLE .)
+
+
+state 43
+
+    (17) type -> DICT .
+
+    RPAREN          reduce using rule 17 (type -> DICT .)
+    SEPARATOR       reduce using rule 17 (type -> DICT .)
+
+
+state 44
+
+    (20) attributes -> attributes SEPARATOR attribute .
+
+    RPAREN          reduce using rule 20 (attributes -> attributes SEPARATOR attribute .)
+    SEPARATOR       reduce using rule 20 (attributes -> attributes SEPARATOR attribute .)
+
+
+state 45
+
+    (21) new_att -> ID TYPEASSIGN STRING .
+
+    RPAREN          reduce using rule 21 (new_att -> ID TYPEASSIGN STRING .)
+    SEPARATOR       reduce using rule 21 (new_att -> ID TYPEASSIGN STRING .)
+
+
+state 46
+
+    (22) new_att -> ID TYPEASSIGN NUMBER .
+
+    RPAREN          reduce using rule 22 (new_att -> ID TYPEASSIGN NUMBER .)
+    SEPARATOR       reduce using rule 22 (new_att -> ID TYPEASSIGN NUMBER .)
+
+
+state 47
+
+    (24) new_atts -> new_atts SEPARATOR new_att .
+
+    RPAREN          reduce using rule 24 (new_atts -> new_atts SEPARATOR new_att .)
+    SEPARATOR       reduce using rule 24 (new_atts -> new_atts SEPARATOR new_att .)
+

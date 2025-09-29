@@ -1,11 +1,8 @@
-List off, enter, return 
-715
-float enter
-add Maria, Carlos 
-view data 
-enter : float
-list : long 
-// here is a comment 
-off enter + return 
+// comentario 
+block MyBlock = (param1:str, param2:int)
+add MyBlock = (param1:"Hello", param2: 25)
+mine MyBlock
+print MyBlock
+
 
 
