@@ -1,8 +1,8 @@
-// comentario 
-block MyBlock = (param1:str, param2:int)
-add MyBlock = (param1:"Hello", param2: 25)
-mine MyBlock
-print MyBlock
-
-
-
+block UserBlock = (username:str, age:int, balance:float)
+add UserBlock = (username:"Alice", age:30, balance:100.5)
+mine UserBlock
+add UserBlock = (username:"Bob", age:25, balance:200.75)
+mine UserBlock
+print UserBlock
+export UserBlock
+view UserBlock
