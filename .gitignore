@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# PLY generated files
+parser.out
+parsetab.py
+
+# Exported blockchain data
+*_blockchain.json
+
+# Editor files
+*.swp
+*.tmp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

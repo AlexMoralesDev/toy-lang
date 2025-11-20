@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Explorer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="glass-panel">
+        <h1>Blockchain Explorer</h1>
+        <div class="status-bar">
+          <span class="status-item" id="chainStatus">Loading...</span>
+          <span class="status-item" id="blockCount">0 blocks</span>
+        </div>
+      </header>
+
+      <main>
+        <div class="controls glass-panel">
+          <button class="btn-primary" onclick="refreshData()">Refresh</button>
+          <button class="btn-primary" onclick="showAddData()">Add Data</button>
+          <button class="btn-success" onclick="mineBlock()">Mine Block</button>
+          <button class="btn-secondary" onclick="validateChain()">
+            Validate
+          </button>
+        </div>
+
+        <section class="command-section glass-panel">
+          <h2>Command Interface</h2>
+          <div id="commandsDisplay" class="commands-display">
+            <h3>Command Templates:</h3>
+            <div class="command-list">
+              <p>block [name] = ([attributes])</p>
+              <p>add [name] = ([values])</p>
+              <p>mine [name]</p>
+              <p>print [name]</p>
+              <p>view [name]</p>
+              <p>export [name]</p>
+            </div>
+          </div>
+          <div class="command-input">
+            <input type="text" id="commandInput" placeholder="Enter command here..." />
+            <button class="btn-primary" onclick="executeCommand()">Run Command</button>
+          </div>
+          <div id="commandOutput" class="output-display"></div>
+        </section>
+
+        <div id="addDataModal" class="modal">
+          <div class="modal-content glass-panel">
+            <h2>Add Transaction Data</h2>
+            <form id="addDataForm">
+              <div id="formFields"></div>
+              <div class="modal-actions">
+                <button type="submit" class="btn-primary">Add</button>
+                <button
+                  type="button"
+                  class="btn-secondary"
+                  onclick="hideAddData()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <section class="pending-section">
+          <div class="glass-panel">
+            <h2>Pending Transactions</h2>
+            <div id="pendingData" class="data-display"></div>
+          </div>
+        </section>
+
+        <section class="blockchain-section">
+          <h2>Blockchain</h2>
+          <div id="blockchainDisplay"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

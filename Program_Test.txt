@@ -1,8 +1,33 @@
-block UserBlock = (username:str, age:int, balance:float)
-add UserBlock = (username:"Alice", age:30, balance:100.5)
-mine UserBlock
-add UserBlock = (username:"Bob", age:25, balance:200.75)
-mine UserBlock
-print UserBlock
-export UserBlock
-view UserBlock
+// Blockchain language test program
+// Define cryptocurrency transaction blockchain
+block CryptoChain = (sender:str, receiver:str, amount:float, timestamp:int)
+
+// Add first transaction
+add CryptoChain = (sender:"Alice", receiver:"Bob", amount:50.5, timestamp:1234567890)
+
+// Mine first block
+mine CryptoChain
+
+// Add second transaction
+add CryptoChain = (sender:"Bob", receiver:"Charlie", amount:25.75, timestamp:1234567900)
+
+// Mine second block
+mine CryptoChain
+
+// Add third transaction
+add CryptoChain = (sender:"Charlie", receiver:"Alice", amount:10.0, timestamp:1234567910)
+
+// Mine third block
+mine CryptoChain
+
+// Print blockchain to console
+print CryptoChain
+
+// Validate chain integrity
+view CryptoChain
+
+// Export to JSON file
+export CryptoChain
+
+// Start Flask web server with UI
+run CryptoChain
