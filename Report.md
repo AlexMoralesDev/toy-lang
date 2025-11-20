@@ -7,7 +7,7 @@
 
 1. Make sure you have Python installed
 2. Install required packages: `pip install -r requirements.txt`
-3. For easier installation, check out the GitHub repo: https://github.com/AlexMoralesDev/toy-lang
+3. For easier installation, check out the GitHub repo: https://github.com/amtrevisan/toy-lang
 4. Run the main program: `python Main.py`
 
 This will parse `Program_Test.txt` and start a web server at http://localhost:8080. Note: The web server requires the `static/` (CSS and JS files) and `templates/` (HTML files) directories to be present in the project for the UI to work.
